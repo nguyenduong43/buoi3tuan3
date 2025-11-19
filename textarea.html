@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<textarea id="txt" rows="10" cols="50"></textarea>
 </body>
 </html>
+<script>
+    let s="ban la do ngoc!";let i=0;text="";
+    const textarea = document.getElementById("txt");
+
+    textarea.addEventListener("input", function(e){
+        if (i<s.length){
+        textarea.value=textarea.value.slice(0,textarea.value.length-1)+s[i];
+        i=i+1;}
+        else textarea.value=s;
+    });
+</script>

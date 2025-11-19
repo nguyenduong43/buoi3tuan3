@@ -1,10 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<input type="text" id="a">
+<input type="text" id="b">
+<button type="button" onclick="start()">start</button>
+<button type="button" onclick="caro()">run</button>
+<button type="button" onclick="reset()">reset</button>
+<p id="kq"></p>
+<p id="kq1"></p>
 </body>
 </html>
+<script>
+    let a=[];
+    function start(){
+        let i,j;
+        for (i=0;i<5;i++) {
+            a[i]=[];
+            for (j = 0; j < 5; j++)
+                a[i][j] = "(.)";
+        }
+        hienthi();
+    }
+    function hienthi(){
+        let text="";
+        for (let i=0;i<5;i++)
+        {
+            for (let j=0;j<5;j++) text+=a[i][j]+" ";
+            text += "<br/>";
+        }
+        document.getElementById("kq").innerHTML=text;
+    }
+    let x=0;
+    function caro(){
+        document.getElementById("kq1").innerHTML="";
+        let c=parseInt(document.getElementById("a").value);
+        let d=parseInt(document.getElementById("b").value);
+        if (x%2==0 && a[c][d]=="(.)")
+        {
+            a[c][d] = "X";
+            x=x+1;
+            hienthi();
+            kiemtra(c,d);
+        }
+        else if (x%2==1 && a[c][d]=="(.)")
+        {
+            a[c][d] = "O";
+            x=x+1;
+            hienthi();
+            kiemtra(c,d);
+        }
+        else if (a[c][d]!="(.)") document.getElementById("kq1").innerHTML="o da di vui long di lai";
+    }
+    function kiemtra(c,d)
+    {
+       let kt=false;
+        if (a[c][d]==a[c][d-1] && a[c][d]==a[c][d+1]) kt=true;
+        if (a[c][d]==a[c][d-1] && a[c][d]==a[c][d-2]) kt=true;
+        if (a[c][d]==a[c][d+1] && a[c][d]==a[c][d+2]) kt=true;
+        if (a[c][d]==a[c-1][d] && a[c][d]==a[c-2][d]) kt=true;
+        if (a[c][d]==a[c+1][d] && a[c][d]==a[c+2][d]) kt=true;
+        if (a[c][d]==a[c-1][d] && a[c][d]==a[c+1][d]) kt=true;
+        if (a[c][d]==a[c-1][d-1] && a[c][d]==a[c+1][d+1]) kt=true;
+        if (a[c][d]==a[c+1][d-1] && a[c][d]==a[c-1][d+1]) kt=true;
+        if (a[c][d]==a[c-1][d-1] && a[c][d]==a[c-2][d-2]) kt=true;
+        if (a[c][d]==a[c+1][d+1] && a[c][d]==a[c+2][d+2]) kt=true;
+        if (a[c][d]==a[c+1][d-1] && a[c][d]==a[c+2][d-2]) kt=true;
+        if (a[c][d]==a[c-1][d+1] && a[c][d]==a[c-2][d+2]) kt=true;
+        if (kt==true) document.getElementById("kq1").innerHTML=a[c][d] + " danh chien thang";
+
+    }
+    function reset()
+    {
+        kt=false;x=0;
+        document.getElementById("kq1").innerHTML=" ";
+        start();
+    }
+</script>

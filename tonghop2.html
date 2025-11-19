@@ -1,10 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+        <h3>tao mang 2 chieu</h3>
+        <button type="button" onclick="mang()">hienthi</button>
+        <p id="kq1"></p>
+<hr>
+        <input type="text" id="a">
+        <button type="button" onclick="add()">them</button>
+        <button type="button" onclick="hienthi()">hien thi</button>
+        <button type="button" onclick="daonguoc()">dao nguoc</button>
+        <button type="button" onclick="demso()">dem so</button>
+        <button type="button" onclick="demtu()">dem tu</button>
+        <button type="button" onclick="sosanh()">so sanh</button>
+        <button type="button" onclick="thaythe()">thay the</button>
+        <p id="kq"></p>
+        <p id="kq2"></p>
+<hr>
 </body>
 </html>
+<script>
+    function mang()
+    {
+        let text="";
+        let a=[[1,2,1,24],[8,11,9,4],[7,0,7,27],[7,4,28,14],[3,10,26,7]];
+        for (let i=0;i<a.length;i++)
+        {
+            text +="row "+i+"<br/>";
+            for (j=0;j<a[i].length;j++) text+=a[i][j]+"<br/>"
+        }
+        document.getElementById("kq1").innerHTML=text;
+    }
+    let a=[];let i=0;
+    function add(){
+        a[i]=document.getElementById("a").value;
+        alert("da them thanh cong a["+i+"]="+a[i] );
+        i=i+1;
+    }
+    function hienthi(){
+        let text=" ";
+        for (j=0;j<a.length;j++){
+            text +="a["+j+"]="+a[j]+"<br/>";
+        }
+        document.getElementById("kq").innerHTML=text;
+    }
+
+    function daonguoc()
+    {
+        let i=0;let j=a.length-1;
+        while(i<j)
+        {
+            let t=a[i];
+            a[i]=a[j];
+            a[j]=t;
+            i=i+1;
+            j=j-1;
+        }
+        hienthi();
+    }
+    function demso()
+    {
+        let s=a[0];let dem=0;
+        for (let i=0;i<s.length-1;i++)
+            if (s[i]>="0" && s[i]<="9") dem++;
+        document.getElementById("kq2").innerHTML= "so chu so trong chuoi la"+dem;
+    }
+    function demtu()
+    {
+        let s=a[0];let dem=0;
+        let i=0;
+        while (i<s.length-1)
+        {
+            if (s[i]!=" " && s[i+1]==" ") dem++;
+            i++;
+        }
+        if (s[s.length-1]=" ") dem--;
+        document.getElementById("kq2").innerHTML= "so tu trong chuoi la "+(dem+1);
+    }
+    function sosanh()
+    {
+        if (a[0]==a[1]) document.getElementById("kq2").innerHTML="2 chuoi giong nhau";
+        else document.getElementById("kq2").innerHTML="2 chuoi khac nhau";
+    }
+    function thaythe()
+    {
+        let s=a[0];let arr=s.split("");
+        for (let i=0;i<arr.length;i++)
+            if (arr[i]=="-") { arr[i]="_";}
+        s=arr.join("");
+        document.getElementById("kq2").innerHTML=s;
+    }
+</script>

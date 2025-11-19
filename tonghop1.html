@@ -1,10 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<p>them phan tu vao mang</p>
+<input type="text" id="a">
+<button type="button" onclick="add()">add</button>
+<button type="button" onclick="hienthi()" >hien thi</button>
+<br>
+<button type="button" onclick="dem()" >so lon hon 10 va so am</button>
+<button type="button" onclick="daonguoc()" >dao nguoc</button>
+<button type="button" onclick="max()" >tim max</button>
+<button type="button" onclick="sapxep()" >sap xep</button>
+<hr>
+<p id="kq"></p>
+<p id="kq2"></p>
+<hr>
+<input type="text" id="timkiem"><button type="button" onclick="timkiem()">timkiem</button>
+<p id="kq1"></p>
+<hr>
+<button type="button" onclick="noimang()">noi mang</button>
+<p id="kq3"></p>
 </body>
 </html>
+<script>
+    let a=[];let i=0;
+    function add(){
+        a[i]=document.getElementById("a").value;
+        alert("da them thanh cong a["+i+"]="+a[i] );
+        i=i+1;
+    }
+    function hienthi(){
+        let text=" ";
+        for (j=0;j<a.length;j++){
+            text +="a["+j+"]="+a[j]+"<br/>";
+        }
+        document.getElementById("kq").innerHTML=text;
+    }
+    function daonguoc()
+    {
+        let i=0;let j=a.length-1;
+        while(i<j)
+        {
+            let t=a[i];
+            a[i]=a[j];
+            a[j]=t;
+            i=i+1;
+            j=j-1;
+        }
+        hienthi();
+    }
+    function timkiem()
+    {
+        let d=false;
+        let c=parseInt(document.getElementById("timkiem").value);
+        for (let i=0;i<a.length;i++){
+            if (a[i]==c) {c=a[i];d=i;break;}
+        }
+        if (d==false) document.getElementById("kq1").innerHTML="khong tim thay "+c;
+        else {document.getElementById("kq1").innerHTML=+c+" dc tim thay o vi tri i="+d;
+        a.splice(d,1);}
+        document.getElementById("kq2").innerHTML="mang sau khi xoa "+c+" khoi mang la ";
+        hienthi();
+    }
+    function max()
+    {
+        let vitri=0;let t=parseInt(a[0]);
+        let m=parseInt(a[0]);
+        for (let i=1;i<a.length;i++)
+        {t=t+parseInt(a[i]);
+            if (parseInt(a[i])>m) {m=parseInt(a[i]);vitri=i;}}
+            t=(t/(a.length)).toFixed(2);
+        hienthi();
+        document.getElementById("kq2").innerHTML="gia tri lon nhat cua mang la "+m+" tai vi tri "+vitri+" trung binh la "+t;
+
+    }
+    function dem()
+    {   let dem=0,dem1=0;
+        for (let i=0;i<=a.length;i++)
+        {
+            if (parseInt(a[i])<0) dem1 +=1;
+            if (parseInt(a[i])>10) dem +=1;
+        }
+        hienthi();
+        document.getElementById("kq2").innerHTML="so phan tu lon hon 10 la "+dem+" so am la "+dem1;
+    }
+    function sapxep()
+    {
+        //a.sort(function(a,b){return b-a;});
+        a.sort((a,b)=>b-a);
+        hienthi();
+    }
+    function noimang()
+    {
+        let z=[8,9,10,11,12];
+        let x=[1,2,3,4,5,6];
+        let c=z.concat(x);
+        document.getElementById("kq3").innerHTML=c;
+    }
+</script>

@@ -1,10 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<p id="kq"></p>
+<hr>
+       <input type="text" id="so">
+       <button type="button" onclick="chuoiso()">cach so</button>
+       <p id="kq2"></p>
+<hr>
+       <input type="text" id="chuoi" placeholder="nhap chuoi">
+       <button type="button" onclick="chuoikitu()">doi chu</button>
+       <p id="kq3"></p>
+<hr>
+       <input type="text" id="tu" placeholder="nhap tieng anh">
+       <button type="button" onclick="dich()">dich</button>
+<p id="kq4"></p>
+<hr>
 </body>
 </html>
+<script>
+    let a = ["red", "green", "blue", "black"];
+    document.getElementById("kq").innerHTML = a;
+    function chuoiso()
+    {
+        let text="";
+        let b=document.getElementById("so").value;
+        for (let i = 0; i < b.length; i++) {
+            let c = parseInt(b[i]);
+            if (c % 2 == 0 && i !=b.length-1) text += b[i] + "-";
+            else text += b[i] ;
+        }
+       // if (text[text.length-1]=="-") text=text.slice(0,-1);
+        document.getElementById("kq2").innerHTML = text;
+    }
+    function chuoikitu()
+    {
+        let text = "";
+        let b=document.getElementById("chuoi").value;
+        for (let i = 0; i < b.length; i++) {
+            if (b[i]>="a" && b[i]<="z") text += b[i].toUpperCase();
+            else if (b[i]>="A" && b[i]<="Z") text += b[i].toLowerCase();
+            else text += b[i];
+        }
+        document.getElementById("kq3").innerHTML = text;
+    }
+    function dich(){
+        let a=["red", "green", "blue", "black","white","yellow"];
+        let b=["do","xanh la","xanh nuoc bien","den","trang","vang"]
+        let c=document.getElementById("tu").value;
+        let d;
+        d=a.indexOf(c);
+        if (d==-1) document.getElementById("kq4").innerHTML="khong tim thay";
+        else document.getElementById("kq4").innerHTML=b[d];
+    }
+</script>
